@@ -2,9 +2,9 @@ from pynput import keyboard
 from pynput.keyboard import Listener, Controller, Key, KeyCode
 import pyperclip
 
-print("\nEnchanced Copy Paste")
-print("To copy: command + c + [0,9]")
-print("To paste: command + v + [0,9]")
+print("\nEnhanced Copy Paste")
+print("To copy: command + c + [F1,F12]")
+print("To paste: command + v + [F1,F12]")
 print("To show current clipboard: a + s\n")
 
 key_ctrl = Controller()
@@ -13,14 +13,14 @@ key_ctrl = Controller()
 current = set()
 
 # Stores our copy/pastes
-strs = ["" for x in range(10)]
+strs = ["" for x in range(12)]
 
 def copy(num):
-    print("COPY" + str(num) + "!")
+    print("COPY" + str(num+1) + "!")
     strs[num] = pyperclip.paste()
 
 def paste(num):
-    print("PASTE" + str(num) + "!") 
+    print("PASTE" + str(num+1) + "!")
     current.clear()
     for n in range(len(pyperclip.paste())):
         key_ctrl.press('\b')
@@ -43,6 +43,8 @@ c6 = lambda : copy(6)
 c7 = lambda : copy(7)
 c8 = lambda : copy(8)
 c9 = lambda : copy(9)
+c10 = lambda : copy(10)
+c11 = lambda : copy(11)
 
 p0 = lambda : paste(0)
 p1 = lambda : paste(1)
@@ -54,51 +56,61 @@ p6 = lambda : paste(6)
 p7 = lambda : paste(7)
 p8 = lambda : paste(8)
 p9 = lambda : paste(9)
+p10 = lambda : paste(10)
+p11 = lambda : paste(11)
 
 COMBINATIONS = {
     # command left
-    frozenset([55, 8, 29]) : c0, # command + c + 0
-    frozenset([55, 8, 18]) : c1, # command + c + 1
-    frozenset([55, 8, 19]) : c2, # command + c + 2
-    frozenset([55, 8, 20]) : c3, # command + c + 3
-    frozenset([55, 8, 21]) : c4, # command + c + 4
-    frozenset([55, 8, 23]) : c5, # command + c + 5
-    frozenset([55, 8, 22]) : c6, # command + c + 6
-    frozenset([55, 8, 26]) : c7, # command + c + 7
-    frozenset([55, 8, 28]) : c8, # command + c + 8
-    frozenset([55, 8, 25]) : c9, # command + c + 9
-    frozenset([55, 9, 29]) : p0, # command + v + 0
-    frozenset([55, 9, 18]) : p1, # command + v + 1
-    frozenset([55, 9, 19]) : p2, # command + v + 2
-    frozenset([55, 9, 20]) : p3, # command + v + 3
-    frozenset([55, 9, 21]) : p4, # command + v + 4
-    frozenset([55, 9, 23]) : p5, # command + v + 5
-    frozenset([55, 9, 22]) : p6, # command + v + 6
-    frozenset([55, 9, 26]) : p7, # command + v + 7
-    frozenset([55, 9, 28]) : p8, # command + v + 8
-    frozenset([55, 9, 25]) : p9, # command + v + 9
+    frozenset([55, 8, 122]) : c0, # command + c + f1
+    frozenset([55, 8, 120]) : c1, # command + c + f2
+    frozenset([55, 8, 99]) : c2, # command + c + f3
+    frozenset([55, 8, 118]) : c3, # command + c + f4
+    frozenset([55, 8, 96]) : c4, # command + c + f5
+    frozenset([55, 8, 97]) : c5, # command + c + f6
+    frozenset([55, 8, 98]) : c6, # command + c + f7
+    frozenset([55, 8, 100]) : c7, # command + c + f8
+    frozenset([55, 8, 101]) : c8, # command + c + f9
+    frozenset([55, 8, 109]) : c9, # command + c + f10
+    frozenset([55, 8, 103]) : c10, # command + c + f11
+    frozenset([55, 8, 111]) : c11, # command + c + f12
+    frozenset([55, 9, 122]) : p0, # command + v + f1
+    frozenset([55, 9, 120]) : p1, # command + v + f2
+    frozenset([55, 9, 99]) : p2, # command + v + f3
+    frozenset([55, 9, 118]) : p3, # command + v + f4
+    frozenset([55, 9, 96]) : p4, # command + v + f5
+    frozenset([55, 9, 97]) : p5, # command + v + f6
+    frozenset([55, 9, 98]) : p6, # command + v + f7
+    frozenset([55, 9, 100]) : p7, # command + v + f8
+    frozenset([55, 9, 101]) : p8, # command + v + f9
+    frozenset([55, 9, 109]) : p9, # command + v + f10
+    frozenset([55, 9, 103]) : p10, # command + v + f11
+    frozenset([55, 9, 111]) : p11, # command + v + f12
     frozenset([0, 1]): show, # show our current clipboard contents
     # command right
-    frozenset([54, 8, 29]) : c0, # command + c + 0
-    frozenset([54, 8, 18]) : c1, # command + c + 1
-    frozenset([54, 8, 19]) : c2, # command + c + 2
-    frozenset([54, 8, 20]) : c3, # command + c + 3
-    frozenset([54, 8, 21]) : c4, # command + c + 4
-    frozenset([54, 8, 23]) : c5, # command + c + 5
-    frozenset([54, 8, 22]) : c6, # command + c + 6
-    frozenset([54, 8, 26]) : c7, # command + c + 7
-    frozenset([54, 8, 28]) : c8, # command + c + 8
-    frozenset([54, 8, 25]) : c9, # command + c + 9
-    frozenset([54, 9, 29]) : p0, # command + v + 0
-    frozenset([54, 9, 18]) : p1, # command + v + 1
-    frozenset([54, 9, 19]) : p2, # command + v + 2
-    frozenset([54, 9, 20]) : p3, # command + v + 3
-    frozenset([54, 9, 21]) : p4, # command + v + 4
-    frozenset([54, 9, 23]) : p5, # command + v + 5
-    frozenset([54, 9, 22]) : p6, # command + v + 6
-    frozenset([54, 9, 26]) : p7, # command + v + 7
-    frozenset([54, 9, 28]) : p8, # command + v + 8
-    frozenset([54, 9, 25]) : p9, # command + v + 9
+    frozenset([54, 8, 122]) : c0, # command + c + f1
+    frozenset([54, 8, 120]) : c1, # command + c + f2
+    frozenset([54, 8, 99]) : c2, # command + c + f3
+    frozenset([54, 8, 118]) : c3, # command + c + f4
+    frozenset([54, 8, 96]) : c4, # command + c + f5
+    frozenset([54, 8, 97]) : c5, # command + c + f6
+    frozenset([54, 8, 98]) : c6, # command + c + f7
+    frozenset([54, 8, 100]) : c7, # command + c + f8
+    frozenset([54, 8, 101]) : c8, # command + c + f9
+    frozenset([54, 8, 109]) : c9, # command + c + f10
+    frozenset([54, 8, 103]) : c10, # command + c + f11
+    frozenset([54, 8, 111]) : c11, # command + c + f12
+    frozenset([54, 9, 122]) : p0, # command + v + f1
+    frozenset([54, 9, 120]) : p1, # command + v + f2
+    frozenset([54, 9, 99]) : p2, # command + v + f3
+    frozenset([54, 9, 118]) : p3, # command + v + f4
+    frozenset([54, 9, 96]) : p4, # command + v + f5
+    frozenset([54, 9, 97]) : p5, # command + v + f6
+    frozenset([54, 9, 98]) : p6, # command + v + f7
+    frozenset([54, 9, 100]) : p7, # command + v + f8
+    frozenset([54, 9, 101]) : p8, # command + v + f9
+    frozenset([54, 9, 109]) : p9, # command + v + f10
+    frozenset([54, 9, 103]) : p10, # command + v + f11
+    frozenset([54, 9, 111]) : p11, # command + v + f12
 }
 
 def get_vk(key):
