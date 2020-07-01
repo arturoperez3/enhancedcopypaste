@@ -6,8 +6,8 @@ In reality, when we copy, we fetch the clipboard contents and put it into a list
 
 
 Key Bindings: 
-command + c + [0,9] (store into one of 10 cells)
-command + v + [0,9] (retreive from one of 10 cells)
-a+s (show contents of our clipboard)
+command + c + [0,9] (store into one of 10 cells) \n
+command + v + [0,9] (retreive from one of 10 cells) \n
+a+s (show contents of our clipboard) \n
 
 Inspired by my friend Austin.
