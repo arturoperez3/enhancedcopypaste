@@ -3,8 +3,8 @@ from pynput.keyboard import Listener, Controller, Key, KeyCode
 import pyperclip
 
 print("\nEnchanced Copy Paste")
-print("To copy: command + c + [1,9]")
-print("To paste: command + v + [1,9]")
+print("To copy: command + c + [0,9]")
+print("To paste: command + v + [0,9]")
 print("To show current clipboard: a + s\n")
 
 key_ctrl = Controller()
@@ -33,6 +33,7 @@ def paste(num):
 def show():
      print (strs)
 
+c0 = lambda : copy(0)
 c1 = lambda : copy(1)
 c2 = lambda : copy(2)
 c3 = lambda : copy(3)
@@ -43,6 +44,7 @@ c7 = lambda : copy(7)
 c8 = lambda : copy(8)
 c9 = lambda : copy(9)
 
+p0 = lambda : paste(0)
 p1 = lambda : paste(1)
 p2 = lambda : paste(2)
 p3 = lambda : paste(3)
@@ -55,6 +57,7 @@ p9 = lambda : paste(9)
 
 COMBINATIONS = {
     # command left
+    frozenset([55, 8, 29]) : c0, # command + c + 0
     frozenset([55, 8, 18]) : c1, # command + c + 1
     frozenset([55, 8, 19]) : c2, # command + c + 2
     frozenset([55, 8, 20]) : c3, # command + c + 3
@@ -64,6 +67,7 @@ COMBINATIONS = {
     frozenset([55, 8, 26]) : c7, # command + c + 7
     frozenset([55, 8, 28]) : c8, # command + c + 8
     frozenset([55, 8, 25]) : c9, # command + c + 9
+    frozenset([55, 9, 29]) : p0, # command + v + 0
     frozenset([55, 9, 18]) : p1, # command + v + 1
     frozenset([55, 9, 19]) : p2, # command + v + 2
     frozenset([55, 9, 20]) : p3, # command + v + 3
@@ -75,6 +79,7 @@ COMBINATIONS = {
     frozenset([55, 9, 25]) : p9, # command + v + 9
     frozenset([0, 1]): show, # show our current clipboard contents
     # command right
+    frozenset([54, 8, 29]) : c0, # command + c + 0
     frozenset([54, 8, 18]) : c1, # command + c + 1
     frozenset([54, 8, 19]) : c2, # command + c + 2
     frozenset([54, 8, 20]) : c3, # command + c + 3
@@ -84,6 +89,7 @@ COMBINATIONS = {
     frozenset([54, 8, 26]) : c7, # command + c + 7
     frozenset([54, 8, 28]) : c8, # command + c + 8
     frozenset([54, 8, 25]) : c9, # command + c + 9
+    frozenset([54, 9, 29]) : p0, # command + v + 0
     frozenset([54, 9, 18]) : p1, # command + v + 1
     frozenset([54, 9, 19]) : p2, # command + v + 2
     frozenset([54, 9, 20]) : p3, # command + v + 3
