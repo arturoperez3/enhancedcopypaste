@@ -3,17 +3,17 @@ Hold up to 12 items for copy/paste in your clipboard at once.
 
 Using our favorite key bindings command+c and command+v to access the OS copy/paste clipboard, this script "extends" the OS clipboard's capability to hold 12 items. 
 
-When we copy, we fetch the requested OS clipboard contents and put it into a list. Then, when we paste, we retrieve the requested content from our list and load it back into the OS clipboard, which then gets pasted.
+When we copy, the program fetches the requested OS clipboard contents and put it into an array. Then, when we paste, the program retrieves the requested content from array and loads it back into the OS clipboard, which then gets pasted.
 
-I originally used command + [0,9], but because these are typically their own hotkeys in all sorts of applications (I'm looking at you Chrome), they proved unreliable and led to all sorts of out of control behavior.
+I originally used numeric keys [0-9], but because keyboard shortcuts across all sorts of applications heavily use these keys (I'm looking at you Chrome), they proved unreliable and led to all sorts of out of control behavior.
 
-I have migrated to use function keys 1-12 instead to avoid undefined behavior. Works well throughout Mac OS Catalina.
+Instead migrated to use function keys 1-12 to avoid triggering unwanted keyboard shortcuts. Works well throughout Mac OS Catalina.
 
 ## Key Bindings: 
 
-command + c + [f1, f12] (store into one of 12 cells)
+command + c + [f1-f12] (store into one of 12 cells)
 
-command + v + [f1, f12] (retrieve from one of 12 cells)
+command + v + [f1-f12] (retrieve from one of 12 cells)
 
 a + s (show contents of our clipboard)
 
