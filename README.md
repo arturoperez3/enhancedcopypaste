@@ -3,9 +3,7 @@ Hold up to 12 items for copy/paste in your clipboard at once.
 
 Using our favorite key bindings command+c and command+v to access the OS copy/paste clipboard, this script "extends" the OS clipboard's capability to hold 12 items. 
 
-In reality, when we copy, we fetch the OS clipboard contents and put it into a list. 
-
-Then, when we paste, we retrieve the content from our list and load it back into the OS clipboard, which then gets pasted (you'll notice that the clipboard will paste what it originally held, only to be replaced by what was retrieved from the list). 
+When we copy, we fetch the requested OS clipboard contents and put it into a list. Then, when we paste, we retrieve the requested content from our list and load it back into the OS clipboard, which then gets pasted.
 
 I originally used command + [0,9], but because these are typically their own hotkeys in all sorts of applications (I'm looking at you Chrome), they proved unreliable and led to all sorts of out of control behavior.
 
