@@ -7,9 +7,11 @@ print("To copy: command + c + [F1,F12]")
 print("To paste: command + v + [F1,F12]")
 print("To show current clipboard: a + s\n")
 
+# Access keyboard
 key_ctrl = Controller()
 
-# The currently active keys
+# The currently active keys,
+# allows us to build combinations
 current = set()
 
 # Stores our copy/pastes
@@ -17,14 +19,18 @@ strs = ["" for x in range(12)]
 
 def copy(num):
     print("COPY" + str(num+1) + "!")
-    strs[num] = pyperclip.paste()
+    strs[num] = pyperclip.paste() # fetch from OS clipboard
 
 def paste(num):
     print("PASTE" + str(num+1) + "!")
     current.clear()
+    
+    # delete original paste
     for n in range(len(pyperclip.paste())):
         key_ctrl.press('\b')
         key_ctrl.release('\b')
+        
+    # fetch requested paste
     pyperclip.copy(strs[num])
     for char in pyperclip.paste():
         key_ctrl.press(char)
@@ -113,27 +119,30 @@ COMBINATIONS = {
     frozenset([54, 9, 111]) : p11, # command + v + f12
 }
 
+# get virtual key value of key press
 def get_vk(key):
     return key.vk if hasattr(key, 'vk') else key.value.vk
 
+# when a key is pressed
 def on_press(key):
     print(key)
     vk = get_vk(key)
-    current.add(vk)
+    current.add(vk) # so we can build combinations
     for combination in COMBINATIONS:
         if all(k in current for k in combination):
             print(current)
             COMBINATIONS[combination]()
             break
 
+# when a key is released
 def on_release(key):
     try:
         vk = get_vk(key)
-        current.remove(vk) # remove from current set
+        current.remove(vk) # remove key from current set
     except KeyError: 
         pass
 
-# Listen for events
+# Listen for key presses
 with keyboard.Listener(
         on_press=on_press,
         on_release=on_release) as listener:
