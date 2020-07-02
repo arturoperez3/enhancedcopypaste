@@ -7,7 +7,7 @@ In reality, when we copy, we fetch the OS clipboard contents and put it into a l
 
 I originally used command + [0,9], but because these are typically their own hotkeys in all sorts of applications (I'm looking at you Chrome), they proved unreliable and led to all sorts of out of control behavior.
 
-I have migrated to use function keys 1-12 instead to avoid undefined behavior. 
+I have migrated to use function keys 1-12 instead to avoid undefined behavior. Works well throughout Mac OS Catalina.
 
 ## Key Bindings: 
 
