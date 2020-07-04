@@ -1,7 +1,7 @@
 # enhancedcopypaste
 Hold up to 12 items for copy/paste in your clipboard at once.
 
-Using our favorite key bindings command+c and command+v to access the OS copy/paste clipboard, this script "extends" the OS clipboard's capability to hold 12 items. 
+Using our favorite key bindings command+c and command+v to access the OS copy/paste clipboard, this script helps extend the OS clipboard's capability to hold 12 items. 
 
 When we copy, the program fetches the requested OS clipboard contents and put it into an array. Then, when we paste, the program retrieves the requested content from array and loads it back into the OS clipboard, which then gets pasted.
 
